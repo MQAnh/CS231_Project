@@ -13,4 +13,17 @@ MODEL_CONFIGS = {
         "architecture": "VGG16_Bilinear",
         "path": r".\models\vgg16_bilinear_lr_0.001.pt"
     },
+    "Resnet50": {
+        "architecture": "Resnet50",
+        "path": r".\models\resnet50.pt"
+    },
+    "Alexnet": {
+        "architecture": "Alexnet",
+        "path": r".\models\alexnet.pth"
+    },
+    "Googlenet": {
+        "architecture": "Googlenet",
+        "path": r".\models\googlenet.pth"
+    },
+    
 }
