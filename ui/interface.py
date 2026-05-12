@@ -1,13 +1,13 @@
 import gradio as gr
 
 
-def create_interface(predict_fn):
+def create_interface(predict_fn, model_names):
     with gr.Blocks(title="Butterfly Classification Demo") as demo:
         gr.Markdown(
             """
-            # 🦋 Butterfly Classification Demo
-            Upload ảnh bướm, model sẽ dự đoán loài bướm tương ứng.
-            Sau khi có kết quả, bạn có thể upload ảnh khác và dự đoán tiếp.
+            # Butterfly Classification Demo
+
+            Upload ảnh bướm, chọn model và dự đoán loài bướm tương ứng.
             """
         )
 
@@ -18,8 +18,13 @@ def create_interface(predict_fn):
                     label="Upload ảnh bướm"
                 )
 
-                predict_button = gr.Button("Dự đoán")
+                model_dropdown = gr.Dropdown(
+                    choices=model_names,
+                    value=model_names[0],
+                    label="Chọn model"
+                )
 
+                predict_button = gr.Button("Dự đoán")
                 clear_button = gr.Button("Xóa ảnh / nhập ảnh mới")
 
             with gr.Column():
@@ -30,7 +35,7 @@ def create_interface(predict_fn):
 
         predict_button.click(
             fn=predict_fn,
-            inputs=image_input,
+            inputs=[image_input, model_dropdown],
             outputs=label_output
         )
 

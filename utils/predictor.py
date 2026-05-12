@@ -5,8 +5,8 @@ from .config import DEVICE
 from .preprocess import preprocess_image
 
 
-def predict(image, model, class_names, top_k=5):
-    image_tensor = preprocess_image(image).to(DEVICE)
+def predict(image, model, class_names, model_name = "MobileNetV2", top_k=5):
+    image_tensor = preprocess_image(image, model_name).to(DEVICE)
 
     with torch.no_grad():
         outputs = model(image_tensor)
